@@ -1,0 +1,73 @@
+﻿@model ProjectCoffeeShop.Models.Message
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="loader-background">
+        <div class="loader">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+
+<partial name="../Shared/header.cshtml" />
+    <!-- FULL SCREEN BANNER -->
+    <div class="full-screen-image">
+        <div class="hero-text-box">
+            <h1 class="mb-3">Instant coffee is dead. <br /> Take the plunge.</h1>
+            <a class="btn btn-primary mr-0 mr-sm-2 mb-3 mb-sm-0 width-250px" asp-action="shopnow">I want coffee</a>
+        </div>
+    </div>
+
+
+    <!-- CONTACT US SECTION -->
+    <section class="section-form">
+        <div class="container">
+            <h2 class="text-center line-under-text">We're happy to hear from you</h2>
+
+
+        <form method="post" asp-action="Create" asp-controller="Messages">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input required asp-for="FullName" class="form-control" placeholder="Enter Full Name">
+                     <span asp-validation-for="FullName" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                  <label asp-for="Title" class="control-label"></label>
+                <input required asp-for="Title" class="form-control" placeholder="Enter title message"/>
+                <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input required asp-for="Email" type="email" class="form-control" placeholder="Enter email" name="email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="findus">How Did You Find Us?</label>
+                    <select  asp-for="findUs" class="form-control">
+                        <option value="Friends" selected>Friends</option>
+                        <option value="Other">Other</option>
+                        <option value="Ad">Advertisement</option>
+                        <option value="Search-engine">Search engine</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="textarea">Drop us a Line</label>
+                    <textarea asp-for="Content" class="form-control" id="textarea" rows="3" ></textarea>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Send">
+            </form>
+            
+        </div>
+
+    </section>
+
+

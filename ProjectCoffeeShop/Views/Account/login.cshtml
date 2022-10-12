@@ -1,0 +1,52 @@
+﻿@model ProjectCoffeeShop.Models.LoginMV
+
+@{
+    ViewData["Title"] = "login";
+}
+<link href="~/css/login.css" rel="stylesheet" />
+
+<body>
+    <div class="login-html">
+        <div class="signin-wrapper">
+            <div class="signin-box">
+                <h1 class="signin-title-primary text-center">Coffe Shop</h1>
+                <h3 class="signin-title-secondary text-center">Sign in to continue.</h3>
+
+                <!-- BEGIN FORM -->
+                <form  method="post">
+                     @if(TempData["Error"] != null)
+                  {
+                        <div class="col-md-12 alert alert-danger">
+                            <span><b>Sorry</b> - @TempData["Error"] </span>
+                        </div>
+                     }
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <!-- Email -->
+                        <label for="email">Email</label>
+                        <input asp-for="Email" placeholder="Enter your Email" type="email" class="input-text form-control mb-3" name="email"/>
+
+                        <!-- Password -->
+                        <label for="password">Password</label>
+                        <input asp-for=Password placeholder="Enter your Password" type="password" class="input-text form-control" name="password"
+                             />
+
+                        <div class="invalid-feedback">
+                            
+                        </div>
+
+                        <!-- Login Button -->
+                        <div class="login-button">
+                            <button onClick="showLoader()" type="submit" name="submit" id="submit"
+                                class="btn btn-primary">LOGIN</button>
+                        </div>
+                </form>
+                <div class="text-center">
+                    <p>
+                        Not Yet a Member? <a asp-controller="Account" asp-action="Register" >Sign Up.</a><br /><br />
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

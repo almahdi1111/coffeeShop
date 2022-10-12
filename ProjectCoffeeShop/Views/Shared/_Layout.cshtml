@@ -1,0 +1,36 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]  ProjectCoffeeShop</title>
+    <partial name="meta.cshtml" />
+</head>
+<body>
+            @RenderBody()
+
+
+    </body>
+<footer>
+    <div class="row">
+
+
+    </div>
+
+</footer>  
+@await RenderSectionAsync("Scripts", required: false)
+   <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/loader.js"></script>
+ <script src="~/js/main.js"></script>
+ <script src="~/js/admin.js"></script>
+ <script src="~/js/login.js"></script>
+ <script src="~/js/sweetalert.js"></script>
+ <script src="~/js/helpers.js"></script>
+ <script src="~/js/ui-modals.js"></script>
+
+  
+
+</html>

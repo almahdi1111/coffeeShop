@@ -1,0 +1,88 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Linq
+@using ProjectCoffeeShop.Models
+@using System.Collections.Generic;
+@inject UserManager<customer> UserManager; 
+@inject SignInManager<customer> signInManager;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+
+
+
+
+<div class="loader-background">
+    <div class="loader">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpansion"
+                aria-controls="navbarExpansion" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarExpansion">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item text-center text-lg-right">
+                    <a class="nav-link" asp-controller="Home" asp-action="index">Home</a>
+                </li>
+                <li class="nav-item text-center text-lg-right">
+                    <a asp-controller="Home" asp-action="shopnow" class="nav-link">Shop Now</a>
+                </li>
+                @if(User.IsInRole("Admin"))
+                {
+                 <li class="nav-item text-center text-lg-right">
+                    <a class="nav-link" asp-controller="Admin" asp-action="index">Admin</a>
+                </li>
+                }
+               
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class='text-center cart-container mr-0 mr-lg-4' onmouseover="cartHover()">
+                    <a asp-controller="cart" asp-action="index">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p id="cart-counter" class="cart-counter">
+                            @if (@Accessor.HttpContext.Session.GetString("cart") != null)// || @Accessor.HttpContext.Session.GetString("cart") != "[]")
+                            {
+
+                              @Accessor.HttpContext.Session.GetString("countCartItem");
+                              
+                            }
+                        </p>
+                    </a>
+                </li>
+                  @if (signInManager.IsSignedIn(User))
+                {
+                     <!-- Display this if you are logged in -->
+                    <li class="nav-item dropdown text-center text-lg-right">
+                        <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Welcome @User.FindFirst(a=>a.Subject.Name==User.Identity.Name).Value
+                            </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item text-dark" style='padding: 0.25rem 1.5rem;'>Order History</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-dark" style='padding: 0.25rem 1.5rem;' asp-controller="Account" asp-action="Logout">Logout</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                     <!-- Display this if you are NOT logged in -->
+                    <li class='text-center text-lg-right'>
+                        <a asp-controller="Account" asp-action="login" class='mr-0 mr-lg-4'>Login</a>
+                    </li>
+                    <li class='text-center text-lg-right'>
+                        <a class='mr-0 mr-lg-4' asp-controller="Account" asp-action="Register">Sign Up</a>
+                    </li>
+                }
+
+                   
+                   
+             
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,46 @@
+﻿
+<partial name="../shared/header.cshtml">
+    <div class="container container-fluid">
+            <h1 class="text-center line-under-text">Admin Dashboard</h1>
+
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 card-padding">
+          <a asp-controller="Order" asp-action="index" class="btn btn-success rounded">
+           <div class="bg-success mb-3">
+               <div class="card-body"><h5 class="card-title text-center">Orders</h5>
+                   <p class="text-White">@ViewBag.Countorders</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+             <div class="col-12 col-sm-6 col-md-4 col-lg-3 card-padding">
+          <a asp-controller="Account" asp-action="index" class="btn btn-danger rounded">
+           <div class="bg-danger mb-3">
+               <div class="card-body"><h5 class="card-title text-center">Users</h5>
+                   <p class="text-White">@ViewBag.Countcustomers</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+             <div class="col-12 col-sm-6 col-md-4 col-lg-3 card-padding">
+          <a asp-controller="Messages" asp-action="index" class="btn btn-warning rounded">
+           <div class="bg-warning mb-3">
+               <div class="card-body"><h5 class="card-title text-center">Messages</h5>
+                   <p class="text-White">@ViewBag.Countmessages</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+             <div class="col-12 col-sm-6 col-md-4 col-lg-3 card-padding">
+          <a asp-controller="items" asp-action="index" class="btn btn-info rounded ">
+           <div class="bg-info  mb-3">
+               <div class="card-body"><h5 class="card-title text-center">Items</h5>
+                   <p class="text-White">@ViewBag.Countitems</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    

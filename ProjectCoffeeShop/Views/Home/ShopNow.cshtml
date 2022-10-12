@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProjectCoffeeShop.Models.CoffeeStrength>
+
+@{
+    ViewData["Title"] = "Shop Coffee";
+}
+<partial name="../shared/header.cshtml" />
+
+@foreach(var Strength in Model)
+{
+        var color ="";
+        var card_style="" ;
+        var button_style="";
+        var title_style = "";
+        var description_style = "";
+    if(Strength.Strength=="white")
+    {
+        color = "white";
+        card_style = "text-white bg-primary";
+        button_style = "btn-outline-secondary button-card-white";
+        title_style = "";
+        description_style ="";
+    }
+    else
+    {
+         color = "black";
+          card_style = "border-primary";
+         button_style = "btn-primary button-card-black";
+          title_style = "text-dark";
+         description_style = "text-grey";
+        
+        
+    }
+    <div class="container-@color container-fluid">
+<h1 class="text-center line-under-text">@Strength.Strength</h1>
+<div class="cart-items-container">
+   <div class="row m-auto">
+       @foreach (var item in Strength.items)
+      {
+        //@{var imagename=(string)item.Id+".jpg");}
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 card-padding">
+           <div class="card mb-3 @card_style">
+               <img src="~/img/shop_coffee/@item.ImagePath" class="img-fluid loading" alt="@item.Name">
+               <div class="card-body"><h5 class="card-title text-center @title_style">@item.Name</h5>
+                   <p class="card-price">R @item.sell</p><p class="card-description @description_style ">@item.Description</p>
+                   <a asp-controller="cart" asp-action="buy" asp-route-id="@item.Id" class="btn @button_style">
+                    Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+      }
+       
+   </div>
+    </div>
+
+</div>
+}
+
+
+   

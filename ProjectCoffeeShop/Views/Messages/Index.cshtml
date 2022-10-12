@@ -1,0 +1,131 @@
+﻿@model IEnumerable<ProjectCoffeeShop.Models.Message>
+
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<partial name="../Shared/header.cshtml">
+
+<div class="container container-table table-responsive">
+    <table id="tableItems" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th> <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.findUs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    var TargetId="modalN"+@item.Id;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.findUs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td class='text-center'>
+
+
+                <form  id="@item.Id"
+                                method="post"
+                                type="submit"
+                                asp-action="Delete"
+                                asp-route-id="@item.Id" 
+                                onclick="return functionConfirm('@item.Id')">
+                                <i class="btn btn-danger btn-table-action fa fa-trash"  onclick="return functionConfirm(@item.Id)"> </i></form>
+
+                 <a class='btn btn-primary btn-table-action' data-toggle="modal" data-target="#@TargetId"> <i class='fas fa-info'></i></a>
+
+            </td>
+        </tr>
+                 <div class="modal fade" id=@TargetId  aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="modalScrollableTitle">Message Detail</h4>
+                              
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="row">
+                  <!-- User Card -->
+               <div class="col align-content-center">
+                      
+                      
+                      <div class="container">
+                        <ul class="list-unstyled">
+                          <li class="mb-3">
+                            <span class="fw-bold me-2">Full name:</span>
+                            <span>@Html.DisplayFor(model => item.FullName)</span>
+                          </li>
+                         
+                         
+                          <li class="mb-3">
+                            <span class="fw-bold me-2">Email: </span>
+                            <span>@Html.DisplayFor(model => item.Email)</span>
+                          </li>  
+
+                          <li class="mb-3">
+                            <span class="fw-bold me-2">title: </span>
+                            <span>@Html.DisplayFor(model => item.Title)</span>
+                          </li>
+
+                          <li class="mb-3">
+                            <span class="fw-bold me-2">Find Us: </span>
+                            <span>@Html.DisplayFor(model => item.findUs)</span>
+                          </li>
+
+                          <li class="mb-3">
+                            <span class="fw-bold me-2">Content: </span>
+                            <span>@Html.DisplayFor(model => item.Content)</span>
+                          </li>
+                      
+                          
+                     
+                          
+                        </ul>
+
+                       <hr/>
+                       <br>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                              
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                Cancel
+                              </button>
+                         
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+}
+    </tbody>
+</table>
+</div>

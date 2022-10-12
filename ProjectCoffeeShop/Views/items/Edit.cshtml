@@ -1,0 +1,80 @@
+﻿@model ProjectCoffeeShop.Models.items
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<partial name="../Shared/header.cshtml" />
+<div class="container container-table mb-5">
+    <h2 class="text-center line-under-text"> Create Item</h2>
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+
+
+        <!-- NAME -->
+        <div class="form-group">
+                 <label asp-for="Name" class="control-label"></label>         
+                 <input asp-for="Name"  class="form-control" id="Name" placeholder="Enter Name" >
+                <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+            
+        <!-- DESCRIPTION -->
+        <div class="form-group"> 
+            <label asp-for="Description" class="control-label"></label>
+             <input asp-for="Description" class="form-control" placeholder="Enter Description"/>
+             <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+       
+            
+        <!-- COST PRICE -->
+        <div class="form-group">
+            <label for="CostPrice">Cost Price</label>
+            <input asp-for="Cost" step="0.01" type="number"  class="form-control" id="CostPrice" placeholder="Enter Price"  >    
+                 
+                <span asp-vidation-for="Cost" class="text-danger"></span>
+        </div>
+    
+            
+        <!-- SELL PRICE -->
+        <div class="form-group">
+            <label for="SellPrice">Sell Price</label>
+            <input asp-for="sell" type="number" step="0.01" class="form-control"  placeholder="Enter Price">
+                   <span asp-validation-for="sell" class="text-danger"></span>
+        </div>
+              
+        <!-- Quantity -->
+        <div class="form-group">
+            <label for="Quantity">Quantity</label>
+            <input asp-for="Quantity" type="number" class="form-control" placeholder="Enter Quantity" min="1">     
+             <span asp-validation-for="Quantity" class="text-danger"></span>
+
+        </div>
+        <!-- Coffee Strength -->
+        <div class="form-group">
+            <label for="strength">Coffee Strength</label>
+                   <select asp-for="CoffeeStrengthId" class="form-control" asp-items="ViewBag.coffeeStrengths"></select>
+                <span asp-validation-for="CoffeeStrengthId" class="text-danger"></span>
+        </div>
+        <!-- IMAGE -->
+        <div class="form-group">
+            <label for="image">Upload Image</label>
+            <input type="file" class="form-control-file" id="Image" name="Image">
+            <small id="fileHelp" class="form-text text-muted">Images may not appear correctly if the aspect ratio is
+                not 1:1</small>
+        </div>
+        <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<hr />
+    <div class="col-md-4">
+       
+       
+    </div>
+
+
+<div>
+    <a asp-action="Index" class="btn btn-danger">Back</a>
+</div>
+

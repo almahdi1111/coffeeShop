@@ -1,0 +1,76 @@
+﻿@using System.Linq
+
+@{
+  // var count= ViewBag.cart.count();
+}
+
+<partial name="../shared/header.cshtml" />
+<div class="container container-table mb-5">
+    <h2 class="text-center line-under-text">Your Cart</h2>
+    <div class="row">
+        
+            @if(ViewBag.Countcartitem==0 || ViewBag.cart== null)
+            {
+                <h3 class='text-center'>Your cart is empty. 😔</h3>
+            }
+            else
+            {
+          <div class="col-9">      
+            
+            <table id="table" class="table table-striped table-hover" cellspacing="0" width="100%">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col" class="table-heading text-center" style="width: 15%">Image</th>
+                    <th scope="col" class="table-heading">Name</th>
+                    <th scope="col" class="table-heading text-center">Quantity</th>
+                    <th scope="col" class="table-heading text-right">Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in ViewBag.cart)
+                    {
+                        <tr>
+                        <td><img src='img/shop_coffee/@item.items.ImagePath' class='img-thumbnail' alt='Thumbnail of coffee beans'></td>
+                        <td>@item.items.Name </td>
+                        <td> <a asp-controller="cart" asp-action="delete" asp-route-id="@item.items.Id">-</a>  @item.Quantity <a asp-controller="cart" asp-action="buy" asp-route-id="@item.items.Id">+</a> </td>
+                        <td>@item.items.sell </td>
+
+                    </tr>
+                    }
+                    <tr>
+                        <td><a asp-controller="cart" asp-action="Remove"  class="btn btn-danger rounded"> clear</a></td>
+                        <td colspan="2" >Total price</td>
+                        <td> @ViewBag.total</td>
+                    </tr>
+                    </tbody>
+
+            </table>
+            
+            
+        </div>
+        <div class="col-3">
+            <div class="cart-buybox text-center">
+                <h6 class="cart-buybox-heading">
+                    Cart Summary</h6>
+                    <hr>
+                    <div class="row ">
+                        @foreach (var item in ViewBag.cart)
+                       {
+                           
+                       
+                        <div class="col-8 text-left">
+                        <p>@item.items.Name x @item.Quantity </p>
+                        </div>
+                        <div class="col-4 text-right cart-buybox-item-price">
+                            R @item.items.sell
+                            </div>
+                            } 
+                            </div>
+
+                       
+                        <hr>
+                        <p class="text-right text-dark">Total: R @ViewBag.total</p><a href="checkout.php" class="btn btn-primary">Checkout</a>
+        </div>
+                </div> }
+    </div>
+</div>
